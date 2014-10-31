@@ -33,6 +33,8 @@ Transaction tx = session.beginTransaction();
 	b1.setPublishers(p1);
 	b2.getAuthorses().add(aut2);
 	b2.setPublishers(p2);	
+	
+	System.out.print("f");
 //Saving entities
 session.save(aut1);
 session.save(aut2);

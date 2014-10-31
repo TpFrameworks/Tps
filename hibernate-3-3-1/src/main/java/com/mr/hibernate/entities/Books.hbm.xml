@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 30 oct. 2014 01:30:28 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.mr.hibernate.entities.Books" table="books" catalog="bookstore">
+        <id name="BBookSk" type="int">
+            <column name="b_book_sk" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="publishers" class="com.mr.hibernate.entities.Publishers" fetch="select">
+            <column name="publishers_p_publisher_sk" />
+        </many-to-one>
+        <property name="BTitle" type="string">
+            <column name="b_title" length="45" />
+        </property>
+        <property name="BPage" type="java.lang.Integer">
+            <column name="b_page" />
+        </property>
+        <set name="authorses" table="books_has_authors" inverse="false" lazy="true" fetch="select">
+            <key>
+                <column name="ba_book_fk" not-null="true" />
+            </key>
+            <many-to-many entity-name="com.mr.hibernate.entities.Authors">
+                <column name="ba_author_fk" not-null="true" />
+            </many-to-many>
+        </set>
+    </class>
+</hibernate-mapping>
